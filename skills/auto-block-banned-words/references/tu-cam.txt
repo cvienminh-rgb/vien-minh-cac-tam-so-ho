@@ -1,0 +1,14 @@
+# Danh sách từ cấm của thương hiệu. Mỗi dòng một từ hoặc cụm từ, sửa tuỳ ý.
+# Cam kết quá mức, dễ vi phạm quy định quảng cáo
+giá rẻ nhất
+cam kết 100%
+số 1 Việt Nam
+tốt nhất thị trường
+tuyệt đối
+chữa khỏi
+hiệu quả ngay lập tức
+không tác dụng phụ
+# Từ sáo rỗng thương hiệu không dùng
+đẳng cấp
+siêu phẩm
+đỉnh cao
