@@ -1,33 +1,44 @@
-# Viên Minh Các — Lập lá số Tâm Số Học
+# Viên Minh Các — AI huyền học và kho tri thức
 
-Bản mẫu website tĩnh để bắt đầu xây dựng công cụ lập lá số theo hệ thống riêng của Viên Minh Các.
+Dự án phát triển trợ lý AI chuyên môn cho hệ thống kiến thức của Viên Minh Các. Giai đoạn đầu ưu tiên **Bát Tự Manh Phái** và **Tâm Số Học**, đồng thời chuẩn bị cấu trúc để mở rộng.
 
-## Có trong bản mẫu
-- Nhập thông tin người lập lá số.
-- Nhập dữ liệu cho 12 cung: tên cung, Tâm số/số liệu, chính tinh/phụ tinh, yếu tố bổ sung, luận giải.
-- Lưu hồ sơ trong trình duyệt hiện tại (localStorage).
-- Xuất/nhập hồ sơ JSON.
-- In báo cáo hoặc lưu thành PDF từ trình duyệt.
-- Giao diện tương thích màn hình máy tính và điện thoại.
+## Mục tiêu
+1. Lưu trữ tài liệu nguồn có nguồn gốc và phiên bản.
+2. Chuẩn hóa quy tắc riêng thành dữ liệu có cấu trúc, phân biệt với kiến thức tham khảo.
+3. Dùng bộ máy tính toán xác định cho phép tính có thể kiểm thử.
+4. Dùng RAG để truy xuất tài liệu nền và giữ nguồn trích dẫn nội bộ.
+5. Tạo báo cáo phân biệt dữ kiện, diễn giải, giả thuyết và dự báo.
+6. Kiểm thử bằng ca mẫu đã được người phụ trách chuyên môn xác nhận.
 
-## Quan trọng
-Bản mẫu **chưa tự tính lá số và chưa tự sinh luận giải**. Chúng tôi không tự giả định công thức riêng của Viên Minh Các. Các công thức và quy tắc sẽ được triển khai sau khi chủ hệ thống cung cấp và xác nhận tài liệu.
+## Trạng thái hiện tại
+Repository đã có website tĩnh lập lá số Tâm Số Học tại `index.html`. Giữ nguyên website đó. Nhánh này chỉ bổ sung nền móng tài liệu và cấu trúc dữ liệu; chưa phải AI đã huấn luyện, chưa có API mô hình và chưa tự tính Bát Tự hay sinh luận giải tự động.
 
-## Đưa website lên GitHub Pages
-1. Tạo repository công khai mới trên GitHub, ví dụ `vien-minh-cac-tam-so-hoc`.
-2. Tải `index.html` lên thư mục gốc của repository.
-3. Vào **Settings → Pages**.
-4. Trong phần Build and deployment, chọn **Deploy from a branch**.
-5. Chọn branch `main`, folder `/ (root)`, rồi bấm **Save**.
-6. Đợi GitHub Pages xuất bản website. Đường dẫn thường có dạng `https://TEN-TAI-KHOAN.github.io/TEN-REPOSITORY/`.
+## Cấu trúc
+- `knowledge_base/`: tài liệu và tri thức chuẩn hóa.
+- `rules/`: quy tắc nghiệp vụ do Viên Minh Các quản lý.
+- `schemas/`: định dạng dữ liệu.
+- `calculation_engine/`: thuật toán tính toán xác định.
+- `ai_engine/`: truy xuất tri thức và điều phối mô hình.
+- `evaluation/`: bộ ca kiểm thử và tiêu chí đánh giá.
+- `docs/`: kiến trúc, quy trình nhập liệu và quản trị.
+- `data/examples/`: dữ liệu minh họa không chứa thông tin cá nhân thật.
 
-## Bước tiếp theo
-Để cài bộ máy tính toán và luận giải đúng hệ thống riêng, hãy chuẩn bị:
-1. Quy tắc tính từ ngày/tháng/năm/giờ sinh, gồm cách xử lý âm lịch/dương lịch.
-2. Công thức lập Bảng Tâm Số và quy tắc điền đủ 12 cung.
-3. Danh sách sao, yếu tố bổ sung và ý nghĩa theo từng cung.
-4. Các mẫu luận giải chuẩn do Viên Minh Các cung cấp.
-5. Ví dụ lá số đầu vào và kết quả đúng đã được xác nhận để kiểm thử.
+## Nguyên tắc quản trị
+- Không tự suy diễn rồi ghi thành quy tắc chính thức.
+- Mỗi quy tắc có mã, nguồn, phiên bản, người duyệt và trạng thái.
+- Phân biệt `source_fact`, `system_rule`, `derived_interpretation`, `prediction` và `case_observation`.
+- Quy tắc mới ở trạng thái `proposed` cho đến khi người phụ trách phê duyệt.
+- Khi có mâu thuẫn, lưu lại hai quan điểm và tạo mục cần xác minh.
+- Không commit dữ liệu lá số có thể nhận diện cá nhân vào repository công khai.
 
-## Riêng tư dữ liệu
-Phiên bản này lưu dữ liệu trong trình duyệt trên thiết bị đang sử dụng; dữ liệu không tự đồng bộ sang thiết bị khác. Không dùng bản mẫu này để lưu hồ sơ nhạy cảm trên máy dùng chung.
+## Quy trình phát triển
+1. Tiếp nhận tài liệu và ghi nguồn/quyền sử dụng.
+2. Trích xuất, phân loại và chuẩn hóa.
+3. Tạo bản ghi quy tắc theo schema.
+4. Người phụ trách chuyên môn duyệt.
+5. Viết thuật toán khi công thức đã được xác nhận.
+6. Tạo ca kiểm thử gồm đầu vào, kết quả kỳ vọng và căn cứ.
+7. Chỉ bật quy tắc trong phiên bản vận hành khi đạt kiểm thử.
+
+## Riêng tư và bảo mật
+Không commit API key, mật khẩu, token hoặc hồ sơ khách hàng. Dùng biến môi trường và kho lưu trữ riêng cho dữ liệu nhạy cảm. Kiểm tra quyền sử dụng tài liệu trước khi đưa vào dịch vụ bên thứ ba.

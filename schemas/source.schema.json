@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Vien Minh Cac Knowledge Source",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source_id", "title", "format", "confidentiality", "rights_status", "ingested_at"],
+  "properties": {
+    "source_id": {"type": "string", "pattern": "^SRC-[A-Z0-9-]+$"},
+    "title": {"type": "string", "minLength": 1},
+    "author": {"type": "string"},
+    "publisher": {"type": "string"},
+    "format": {"type": "string", "enum": ["pdf", "docx", "doc", "md", "txt", "csv", "xlsx", "pptx", "audio", "other"]},
+    "edition": {"type": "string"},
+    "published_at": {"type": ["string", "null"], "format": "date"},
+    "ingested_at": {"type": "string", "format": "date-time"},
+    "language": {"type": "string", "default": "vi"},
+    "systems": {"type": "array", "items": {"type": "string"}},
+    "confidentiality": {"type": "string", "enum": ["public", "internal", "confidential", "restricted"]},
+    "rights_status": {"type": "string", "enum": ["owned", "licensed", "permission_pending", "public_domain", "unknown"]},
+    "storage_uri": {"type": "string"},
+    "checksum_sha256": {"type": "string"},
+    "notes": {"type": "string"}
+  }
+}

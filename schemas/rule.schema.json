@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Vien Minh Cac Knowledge Rule",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["rule_id", "system", "title", "content", "knowledge_type", "status", "version", "sources", "created_at"],
+  "properties": {
+    "rule_id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._-]+$"},
+    "system": {"type": "string", "minLength": 1},
+    "topic": {"type": "string"},
+    "title": {"type": "string", "minLength": 1},
+    "content": {"type": "string", "minLength": 1},
+    "knowledge_type": {"type": "string", "enum": ["source_fact", "system_rule", "derived_interpretation", "prediction", "case_observation"]},
+    "status": {"type": "string", "enum": ["proposed", "under_review", "confirmed", "reference", "conflict", "deprecated"]},
+    "version": {"type": "integer", "minimum": 1},
+    "effective_from": {"type": ["string", "null"], "format": "date"},
+    "supersedes": {"type": ["string", "null"]},
+    "conditions": {"type": "array", "items": {"type": "string"}},
+    "exceptions": {"type": "array", "items": {"type": "string"}},
+    "examples": {"type": "array", "items": {"type": "string"}},
+    "sources": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["source_id", "locator"], "properties": {"source_id": {"type": "string"}, "locator": {"type": "string"}, "quote": {"type": "string"}}}},
+    "created_at": {"type": "string", "format": "date-time"},
+    "created_by": {"type": "string"},
+    "approved_by": {"type": ["string", "null"]},
+    "approved_at": {"type": ["string", "null"], "format": "date-time"},
+    "notes": {"type": "string"}
+  }
+}
