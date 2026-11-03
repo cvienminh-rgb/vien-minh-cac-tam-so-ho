@@ -1,0 +1,21 @@
+{
+  "rule_id": "EXAMPLE.BAT_TU.001",
+  "system": "bat_tu_manh_phai",
+  "topic": "example_only",
+  "title": "Mẫu cấu trúc bản ghi quy tắc",
+  "content": "Đây là dữ liệu minh họa schema, không phải quy tắc huyền học đã được xác nhận.",
+  "knowledge_type": "system_rule",
+  "status": "proposed",
+  "version": 1,
+  "effective_from": null,
+  "supersedes": null,
+  "conditions": [],
+  "exceptions": [],
+  "examples": [],
+  "sources": [],
+  "created_at": "2026-11-04T00:00:00+07:00",
+  "created_by": "project-template",
+  "approved_by": null,
+  "approved_at": null,
+  "notes": "Thay bằng quy tắc đã được chủ hệ thống duyệt."
+}
