@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101c2c">
+<title>Viên Minh Các | Lập lá số Tâm Số Học</title>
+<style>
+:root{--navy:#101c2c;--navy2:#17283d;--gold:#d8b76a;--gold2:#f0d99b;--paper:#f6f4ef;--ink:#172333;--muted:#6b7280;--line:#dedbd2;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:linear-gradient(135deg,var(--navy),#203752);color:#fff;padding:26px max(20px,calc((100% - 1180px)/2));border-bottom:3px solid var(--gold)}
+.brand{color:var(--gold2);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}.headrow{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}h1{margin:8px 0 5px;font-size:clamp(25px,4vw,36px);font-weight:700}.sub{color:#d5deea;margin:0;line-height:1.5}.actions{display:flex;gap:8px;flex-wrap:wrap}
+button,.btn{border:1px solid var(--gold);background:var(--gold);color:#172333;border-radius:9px;padding:10px 14px;font-weight:700;cursor:pointer;font-size:14px}button.secondary{background:transparent;color:#fff;border-color:#64748b}button.light{background:#fff;border-color:var(--line);color:var(--ink)}button:hover{filter:brightness(1.04)}
+main{max-width:1180px;margin:26px auto;padding:0 18px 50px}.notice{border:1px solid #e4d3a4;background:#fff9e9;padding:13px 15px;border-radius:10px;line-height:1.5;margin-bottom:18px;font-size:14px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.tab{background:#fff;border:1px solid var(--line);color:var(--ink)}.tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.layout{display:grid;grid-template-columns:340px minmax(0,1fr);gap:18px;align-items:start}.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 5px 18px #1723330a}.panel h2{margin:0 0 15px;font-size:18px}.panel h3{margin:20px 0 10px;font-size:15px}
+label{display:block;font-size:13px;font-weight:700;margin:12px 0 6px;color:#344054}input,select,textarea{width:100%;padding:10px 11px;border:1px solid #cfd4dc;border-radius:8px;background:#fff;font:inherit;color:var(--ink)}textarea{min-height:88px;resize:vertical}input:focus,select:focus,textarea:focus{outline:2px solid #d8b76a66;border-color:#b89545}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.muted{color:var(--muted);font-size:12px;line-height:1.5}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:15px}.stat{background:var(--navy);color:#fff;border-radius:10px;padding:13px}.stat span{display:block;color:#d7dfeb;font-size:12px}.stat strong{display:block;font-size:22px;color:var(--gold2);margin-top:3px;overflow-wrap:anywhere}
+.house-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.house{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fff}.house strong{display:block;color:#9a762a;font-size:13px;margin-bottom:6px}.house input,.house textarea{margin-top:7px;font-size:13px;padding:8px}.house textarea{min-height:65px}
+.section{display:none}.section.active{display:block}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.result-block{padding:15px;border:1px solid var(--line);border-radius:10px;margin-top:12px;background:#fff}.result-block h3{margin:0 0 8px}.empty{color:var(--muted);font-size:14px;line-height:1.6}.footer{margin-top:24px;text-align:center;color:var(--muted);font-size:12px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.house-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:520px){.house-grid{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.panel{padding:15px}}
+@media print{header{padding:15px;background:#fff!important;color:#000;border-bottom:2px solid #aaa}header .sub,.actions,.tabs,.toolbar,.notice,.sidebar{display:none!important}main{margin:0;max-width:none;padding:10px}.layout{display:block}.panel{box-shadow:none;border:0;padding:0}.section{display:block!important}.house-grid{grid-template-columns:repeat(3,1fr)}body{background:#fff}.stat{background:#eee;color:#000}.stat strong,.stat span{color:#000}}
+</style>
+</head>
+<body>
+<header>
+  <div class="headrow">
+    <div>
+      <div class="brand">Viên Minh Các</div>
+      <h1>Lập lá số Tâm Số Học</h1>
+      <p class="sub">Minh tâm, minh đạo, minh đời · Công cụ nội bộ theo hệ thống luận giải riêng</p>
+    </div>
+    <div class="actions">
+      <button class="secondary" onclick="newChart()">Lá số mới</button>
+      <button onclick="window.print()">In / Lưu PDF</button>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="notice"><strong>Bản khởi tạo:</strong> Đây là khung nhập liệu và quản lý lá số. Chưa tự suy diễn công thức Tâm Số Học; các phép tính và nội dung luận giải sẽ được cài đặt sau khi bạn cung cấp bảng quy tắc chuẩn.</div>
+  <div class="tabs">
+    <button class="tab active" data-tab="profile">1. Thông tin</button>
+    <button class="tab" data-tab="chart">2. Bảng 12 cung</button>
+    <button class="tab" data-tab="reading">3. Luận giải</button>
+    <button class="tab" data-tab="library">4. Hồ sơ đã lưu</button>
+  </div>
+  <div class="layout">
+    <aside class="panel sidebar">
+      <h2>Thông tin lá số</h2>
+      <label for="personName">Họ và tên</label><input id="personName" placeholder="Nhập họ tên">
+      <div class="grid2">
+        <div><label for="birthDate">Ngày sinh</label><input id="birthDate" type="date"></div>
+        <div><label for="birthTime">Giờ sinh</label><input id="birthTime" type="time"></div>
+      </div>
+      <label for="gender">Giới tính (nếu cần)</label><select id="gender"><option value="">Chưa chọn</option><option>Nam</option><option>Nữ</option><option>Khác</option></select>
+      <label for="calendar">Loại ngày sinh</label><select id="calendar"><option>Dương lịch</option><option>Âm lịch</option></select>
+      <label for="birthPlace">Nơi sinh</label><input id="birthPlace" placeholder="Tỉnh / thành phố">
+      <label for="chartNote">Ghi chú hồ sơ</label><textarea id="chartNote" placeholder="Thông tin bổ sung..."></textarea>
+      <div class="toolbar"><button onclick="saveChart()">Lưu lá số</button><button class="light" onclick="exportJSON()">Xuất JSON</button><button class="light" onclick="document.getElementById('importFile').click()">Nhập JSON</button><input id="importFile" type="file" accept=".json,application/json" hidden></div>
+      <p class="muted">Dữ liệu bản mẫu được lưu trong trình duyệt trên thiết bị hiện tại, chưa đồng bộ lên máy chủ.</p>
+    </aside>
+    <div>
+      <section id="profile" class="section active">
+        <div class="panel">
+          <h2>Tổng quan lá số</h2>
+          <div class="stats">
+            <div class="stat"><span>Họ tên</span><strong id="summaryName" style="font-size:16px">Chưa nhập</strong></div>
+            <div class="stat"><span>Ngày sinh</span><strong id="summaryDate" style="font-size:16px">—</strong></div>
+            <div class="stat"><span>Số cung đã nhập</span><strong id="summaryHouses">0 / 12</strong></div>
+          </div>
+          <div class="result-block"><h3>Quy trình triển khai</h3><p class="empty">Bước 1: thống nhất dữ liệu đầu vào và lịch âm/dương. Bước 2: cài đặt công thức tính theo tài liệu Viên Minh Các. Bước 3: gắn quy tắc luận giải cho từng cung, chính tinh, Tâm số, vận hạn và các yếu tố kết hợp.</p></div>
+          <div class="result-block"><h3>Nguyên tắc hệ thống</h3><p class="empty">Không tự thay thế ý nghĩa con số hoặc sao bằng hệ thống phổ thông. Mỗi quy tắc sẽ được lưu thành dữ liệu có thể kiểm tra, chỉnh sửa và mở rộng.</p></div>
+        </div>
+      </section>
+      <section id="chart" class="section">
+        <div class="panel">
+          <h2>Bảng nhập liệu 12 cung</h2>
+          <p class="muted">Điền dữ liệu theo mẫu lá số hiện tại. Có thể đổi tên cung và nhập Tâm số, chính tinh, phụ tinh, yếu tố bổ sung.</p>
+          <div id="houseGrid" class="house-grid"></div>
+        </div>
+      </section>
+      <section id="reading" class="section">
+        <div class="panel">
+          <h2>Luận giải theo quy tắc Viên Minh Các</h2>
+          <p class="empty">Phần này sẽ tự tạo luận giải khi bộ quy tắc đã được cung cấp và lập trình. Hiện tại bạn có thể nhập nội dung luận giải thủ công cho từng cung.</p>
+          <label for="overallReading">Luận giải tổng thể</label><textarea id="overallReading" placeholder="Nhập luận giải tổng thể..."></textarea>
+          <div id="readingGrid"></div>
+          <div class="toolbar"><button onclick="saveChart()">Lưu nội dung luận giải</button><button class="light" onclick="window.print()">In báo cáo</button></div>
+        </div>
+      </section>
+      <section id="library" class="section">
+        <div class="panel">
+          <h2>Hồ sơ đã lưu trên thiết bị</h2>
+          <p class="muted">Chỉ các hồ sơ đã lưu trong trình duyệt hiện tại mới xuất hiện ở đây.</p>
+          <div id="savedList" class="empty">Chưa có hồ sơ.</div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="footer">Viên Minh Các · Bản mẫu phát triển nội bộ · Dữ liệu huyền học cần được diễn giải theo bộ quy tắc do chủ hệ thống xác nhận.</div>
+</main>
+<script>
+const HOUSE_NAMES=["Mệnh","Sự Nghiệp","Sở Hữu","Thiên Di","Phối Ngẫu","Phúc Đức","Tử Tức","Thân Hữu","Điền Trạch","Sức Khỏe","Thuộc Cấp","Lý Tưởng"];
+let houses=HOUSE_NAMES.map((name,i)=>({name,number:"",stars:"",elements:"",reading:""}));
+let currentId=null;
+const $=id=>document.getElementById(id);
+function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function renderHouses(){
+ $("houseGrid").innerHTML=houses.map((h,i)=>`<div class="house"><strong>CUNG ${String(i+1).padStart(2,"0")}</strong><label>Tên cung</label><input data-house="${i}" data-field="name" value="${escapeHtml(h.name)}"><label>Tâm số / số liệu</label><input data-house="${i}" data-field="number" value="${escapeHtml(h.number)}" placeholder="Ví dụ: Tâm 3"><label>Chính tinh / phụ tinh</label><input data-house="${i}" data-field="stars" value="${escapeHtml(h.stars)}" placeholder="Nhập sao"><label>Yếu tố khác</label><textarea data-house="${i}" data-field="elements" placeholder="Tuần, Triệt, Tứ Hóa...">${escapeHtml(h.elements)}</textarea><label>Luận giải cung</label><textarea data-house="${i}" data-field="reading" placeholder="Nội dung luận giải...">${escapeHtml(h.reading)}</textarea></div>`).join("");
+ $("readingGrid").innerHTML=houses.map((h,i)=>`<div class="result-block"><h3>${escapeHtml(h.name||"Cung "+(i+1))}</h3><p class="muted">Số liệu: ${escapeHtml(h.number||"Chưa nhập")} · Sao: ${escapeHtml(h.stars||"Chưa nhập")}</p><label>Luận giải</label><textarea data-reading="${i}" placeholder="Nhập luận giải cho ${escapeHtml(h.name)}...">${escapeHtml(h.reading)}</textarea></div>`).join("");
+ updateSummary();
+}
+function collect(){
+ document.querySelectorAll("[data-house]").forEach(el=>{const i=+el.dataset.house;houses[i][el.dataset.field]=el.value;});
+ document.querySelectorAll("[data-reading]").forEach(el=>{houses[+el.dataset.reading].reading=el.value;});
+ return {id:currentId||("vmc-"+Date.now()),name:$("personName").value,birthDate:$("birthDate").value,birthTime:$("birthTime").value,gender:$("gender").value,calendar:$("calendar").value,birthPlace:$("birthPlace").value,note:$("chartNote").value,overallReading:$("overallReading").value,houses,updatedAt:new Date().toISOString()};
+}
+function updateSummary(){
+ $("summaryName").textContent=$("personName").value||"Chưa nhập";
+ $("summaryDate").textContent=$("birthDate").value||"—";
+ const n=houses.filter(h=>h.number||h.stars||h.elements||h.reading).length;
+ $("summaryHouses").textContent=n+" / 12";
+}
+function saveChart(){
+ const chart=collect();currentId=chart.id;
+ const all=JSON.parse(localStorage.getItem("vmcCharts")||"[]");
+ const index=all.findIndex(x=>x.id===chart.id);
+ if(index>=0)all[index]=chart;else all.unshift(chart);
+ localStorage.setItem("vmcCharts",JSON.stringify(all));
+ renderSaved();updateSummary();alert("Đã lưu lá số trên trình duyệt này.");
+}
+function loadChart(c){
+ currentId=c.id;$("personName").value=c.name||"";$("birthDate").value=c.birthDate||"";$("birthTime").value=c.birthTime||"";$("gender").value=c.gender||"";$("calendar").value=c.calendar||"Dương lịch";$("birthPlace").value=c.birthPlace||"";$("chartNote").value=c.note||"";$("overallReading").value=c.overallReading||"";
+ houses=Array.from({length:12},(_,i)=>({...{name:HOUSE_NAMES[i],number:"",stars:"",elements:"",reading:""},...(c.houses||[])[i]}));
+ renderHouses();showTab("profile");
+}
+function renderSaved(){
+ const all=JSON.parse(localStorage.getItem("vmcCharts")||"[]");
+ $("savedList").innerHTML=all.length?all.map(c=>`<div class="result-block"><strong>${escapeHtml(c.name||"Chưa đặt tên")}</strong><p class="muted">${escapeHtml(c.birthDate||"Chưa có ngày sinh")} · Cập nhật ${escapeHtml((c.updatedAt||"").slice(0,10))}</p><div class="toolbar"><button onclick="openSaved('${c.id}')">Mở hồ sơ</button><button class="light" onclick="deleteSaved('${c.id}')">Xóa</button></div></div>`).join(""):"Chưa có hồ sơ.";
+}
+function openSaved(id){const c=JSON.parse(localStorage.getItem("vmcCharts")||"[]").find(x=>x.id===id);if(c)loadChart(c);}
+function deleteSaved(id){if(!confirm("Xóa hồ sơ này khỏi trình duyệt?"))return;localStorage.setItem("vmcCharts",JSON.stringify(JSON.parse(localStorage.getItem("vmcCharts")||"[]").filter(x=>x.id!==id)));renderSaved();}
+function exportJSON(){const data=collect();const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=(data.name||"la-so-tam-so-hoc").replace(/[^\p{L}\p{N}-]+/gu,"-")+".json";a.click();URL.revokeObjectURL(a.href);}
+$("importFile").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{loadChart(JSON.parse(await f.text()));alert("Đã nhập dữ liệu JSON.");}catch(err){alert("Tệp JSON không hợp lệ.");}e.target.value="";});
+function newChart(){if(!confirm("Tạo lá số mới? Hãy lưu hồ sơ hiện tại trước nếu cần."))return;currentId=null;$("personName").value="";$("birthDate").value="";$("birthTime").value="";$("gender").value="";$("calendar").value="Dương lịch";$("birthPlace").value="";$("chartNote").value="";$("overallReading").value="";houses=HOUSE_NAMES.map(name=>({name,number:"",stars:"",elements:"",reading:""}));renderHouses();showTab("profile");}
+function showTab(id){document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",s.id===id));document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
+["personName","birthDate"].forEach(id=>$(id).addEventListener("input",updateSummary));
+renderHouses();renderSaved();
+</script>
+</body>
+</html>
